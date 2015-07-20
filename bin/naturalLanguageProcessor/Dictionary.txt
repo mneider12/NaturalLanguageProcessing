@@ -1,0 +1,8 @@
+the|article
+quick|adjective
+brown|adjective
+fox|noun
+jumped|verb
+over|preposition
+lazy|adjective
+dog|noun

@@ -1,5 +1,7 @@
 package naturalLanguageProcessor;
 
+import java.util.ArrayList;
+
 public class NLPagent {
 	
 	private String sentence;	// Sentence that can be queried
@@ -44,6 +46,17 @@ public class NLPagent {
 			return sentence;
 		}
 		
+	}
+
+	/*
+	 * Purpose:	Return the adjectives that are associated with the given noun in sentence
+	 * Parameters:	
+	 * 				noun: String key indicating which noun to find adjectives for
+	 * Returns:	ArrayList of Adjectives describing the given noun
+	 */
+	public ArrayList<Adjective> getAdjectives(String noun) {
+		//TODO Implement
+		return null;
 	}
 	
 	
