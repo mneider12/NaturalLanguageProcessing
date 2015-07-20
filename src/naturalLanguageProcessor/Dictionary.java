@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 public class Dictionary {
 	
-	private TreeSet words;
+	private TreeSet<Word> words;
 
 	/*
 	 * Purpose:	Initialize an empty dictionary
@@ -79,9 +79,11 @@ public class Dictionary {
 		case "verb":
 			newWord = new Verb(wordStr);
 			break;
-		case "word":
+		default:
 			newWord = new Word(wordStr);
 		}
+		
+		words.add(newWord);
 		
 		return true;
 	}
