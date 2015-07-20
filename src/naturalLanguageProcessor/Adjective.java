@@ -6,6 +6,8 @@ public class Adjective extends Word {
 		super();
 	}
 	
-	
+	public Adjective(String wordStr) {
+		super(wordStr);
+	}
 
 }

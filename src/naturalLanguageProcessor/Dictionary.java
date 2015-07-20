@@ -62,10 +62,25 @@ public class Dictionary {
 	private boolean add(String line) {
 		
 		String[] pieces = line.split("|");
+		String wordStr;
+		String type;
 		try {
-			String wordStr = pieces[0];
+			wordStr = pieces[0];
+			type = pieces[1];
 		} catch (NullPointerException e) {
 			return false;
+		}
+		
+		Word newWord;
+		switch(type) {
+		case "adjective":
+			newWord = new Adjective(wordStr);
+			break;
+		case "verb":
+			newWord = new Verb(wordStr);
+			break;
+		case "word":
+			newWord = new Word(wordStr);
 		}
 		
 		return true;
