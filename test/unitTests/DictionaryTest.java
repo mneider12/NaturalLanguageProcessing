@@ -2,8 +2,6 @@ package unitTests;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
-
 import naturalLanguageProcessor.Dictionary;
 
 import org.junit.Test;

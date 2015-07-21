@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.TreeSet;
 
+import naturalLanguageProcessor.Word.wordType;
+
 public class Dictionary {
 	
 	private TreeSet<Word> words;
@@ -109,6 +111,19 @@ public class Dictionary {
 		} catch (NullPointerException e) {
 			return false;
 		}
-		
+	}
+	
+	/*
+	 * Purpose: lookup the type of a word if it is in the Dictionary
+	 * Returns:	first type that matches the string value of Word, if none match, return null
+	 */
+	public wordType getType(String wordStr) {
+		Word word = new Word();
+		Word checkWord = words.ceiling(word);
+		if (checkWord.getWord().equals(word.getWord())) {
+			return checkWord.getType();
+		} else {
+			return wordType.generic;
+		}
 	}
 }
