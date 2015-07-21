@@ -61,13 +61,16 @@ public class Dictionary {
 	
 	private boolean add(String line) {
 		
-		String[] pieces = line.split("|");
+		int index = line.indexOf('|');
+		if (index <= 0) {
+			return false;
+		}
 		String wordStr;
-		String type;
+		String type;;
 		try {
-			wordStr = pieces[0];
-			type = pieces[1];
-		} catch (NullPointerException e) {
+			wordStr  = line.substring(0, index);;
+			type = line.substring(index + 1);
+		} catch (StringIndexOutOfBoundsException e) {
 			return false;
 		}
 		
@@ -96,7 +99,7 @@ public class Dictionary {
 	 * Returns:	true 'word' is found in the dictionary, otherwise false
 	 */
 	public boolean hasWord(String word) {
-		Word checkWord = new Word("word");
+		Word checkWord = new Word(word);
 		try {
 			if (words.floor(checkWord).getWord().equals(word)){
 				return true;
