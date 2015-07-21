@@ -9,7 +9,7 @@ import naturalLanguageProcessor.NLPagent;
 
 import org.junit.Test;
 
-public class Sentences {
+public class SentencesTest {
 
 	@Test
 	public void quickFox() {

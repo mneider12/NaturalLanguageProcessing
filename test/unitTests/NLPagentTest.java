@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class Verb {
+public class NLPagentTest {
 
 	@Test
 	public void test() {
