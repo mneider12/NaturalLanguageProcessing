@@ -13,7 +13,7 @@ public class Dictionary {
 	 * Purpose:	Initialize an empty dictionary
 	 */
 	public Dictionary() {
-		
+		words = new TreeSet<Word>();
 	}
 	
 	/*
@@ -86,5 +86,26 @@ public class Dictionary {
 		words.add(newWord);
 		
 		return true;
+	}
+	
+	
+	/*
+	 * Purpose:	Check if a string is defined in this dictionary
+	 * Parameters:
+	 * 				word:	string value to lookup in dictionary
+	 * Returns:	true 'word' is found in the dictionary, otherwise false
+	 */
+	public boolean hasWord(String word) {
+		Word checkWord = new Word("word");
+		try {
+			if (words.floor(checkWord).getWord().equals(word)){
+				return true;
+			} else {
+				return false;
+			}
+		} catch (NullPointerException e) {
+			return false;
+		}
+		
 	}
 }
