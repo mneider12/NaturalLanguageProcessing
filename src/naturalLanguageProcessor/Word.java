@@ -106,6 +106,36 @@ public class Word implements Comparable<Word> {
 				return "";
 			}
 		}
+		
+		public int intValue() {
+			switch(this) {
+			case noun:
+				return 2;
+			case verb:
+				return 3;
+			case adjective:
+				return 4;
+			default:
+				return 1;
+						
+			}
+		}
+	}
+	
+	public int hashCode() {
+		return type.intValue() * word.hashCode();
+	}
+	
+	public boolean equals(Object otherWord) {
+		if (!(otherWord instanceof Word)) {
+			return false;
+		}
+		if (word.equals(((Word) otherWord).getWord())) {
+			if (type == ((Word) otherWord).getType()) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

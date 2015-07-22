@@ -16,7 +16,8 @@ public class NLPagent {
 	 * Purpose:	Initialize an NLPagent with nothing set in memory
 	 */
 	public NLPagent() {
-		
+		words = new ArrayList<Word>();
+		frames = new ArrayList<Frame>();
 	}
 	
 	/*
@@ -60,10 +61,13 @@ public class NLPagent {
 			switch(type) {
 			case adjective:
 				words.add(new Adjective(word));
+				break;
 			case noun:
 				words.add(new Noun(word));
+				break;
 			case verb:
 				words.add(new Verb(word));
+				break;
 			default:
 				words.add(new Word(word));
 			}
@@ -82,7 +86,8 @@ public class NLPagent {
 				adjectives.add((Adjective) word);
 			} else if (word.getClass() == Noun.class) {
 				frame = new Frame((Noun) word, adjectives);
-				
+				frames.add(frame);
+				adjectives = new ArrayList<Adjective>();
 			}
 			
 		}
@@ -110,7 +115,11 @@ public class NLPagent {
 	 * Returns:	ArrayList of Adjectives describing the given noun
 	 */
 	public ArrayList<Adjective> getAdjectives(String noun) {
-		
+		for (Frame frame : frames) {
+			if (frame.getNoun().getWord().equals(noun)) {
+				return frame.getAdjectives();
+			}
+		}
 		return null;
 	}
 	

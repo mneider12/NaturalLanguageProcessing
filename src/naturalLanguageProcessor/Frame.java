@@ -11,10 +11,18 @@ public class Frame {
 		
 	}
 	
-	public Frame(Noun noun, ArrayList<Adjective> adjectives2) {
+	public Frame(Noun noun, ArrayList<Adjective> adjectives) {
 		
 		this.noun = noun;
-		this.adjectives = adjectives2;
+		this.adjectives = adjectives;
 		
+	}
+	
+	public Noun getNoun() {
+		return noun;
+	}
+	
+	public ArrayList<Adjective> getAdjectives() {
+		return adjectives;
 	}
 }

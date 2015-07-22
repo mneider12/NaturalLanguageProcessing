@@ -15,9 +15,10 @@ public class SentencesTest {
 	public void quickFox() {
 		NLPagent agent = new NLPagent("The quick brown fox jumped over the lazy dog");
 		ArrayList<Adjective> foxDesc = agent.getAdjectives("fox");
-		String[] foxDescAns = {"quick","brown"};
-		
-		assertArrayEquals(foxDesc.toArray(), foxDescAns);
+		ArrayList<Adjective> foxDescAns = new ArrayList<Adjective>();
+		foxDescAns.add(new Adjective("quick"));
+		foxDescAns.add(new Adjective("brown"));
+		assertArrayEquals(foxDescAns.toArray(), foxDesc.toArray());
 	}
 
 }
