@@ -11,12 +11,15 @@ public class Dictionary {
 	
 	private TreeSet<Word> words;	// store words in local memory. Currently using a Tree since
 									// lookup often involves checking for nearby words
+	
+	private String filePath;
 
 	/*
 	 * Purpose:	Initialize an empty dictionary
 	 */
 	public Dictionary() {
-
+		filePath = "";
+		words = new TreeSet<Word>();
 	}
 	
 	/*
@@ -39,6 +42,7 @@ public class Dictionary {
 	 * Returns:	true if all lines in file can be read successfully, otherwise false
 	 */
 	public boolean load(String filePath) {
+		this.filePath = filePath;
 		words = new TreeSet<Word>();
 		
 		Scanner r = null;
@@ -125,6 +129,14 @@ public class Dictionary {
 	}
 	
 	/*
+	 * Purpose:	Get method for filePath
+	 * Returns:	Returns the file path for this Dictionary
+	 */
+	public String getFilePath() {
+		return filePath;
+	}
+	
+	/*
 	 * Purpose: lookup the type of a word if it is in the Dictionary
 	 * Parameters:
 	 * 				wordStr:	The word to lookup a type for
@@ -142,6 +154,21 @@ public class Dictionary {
 		} 
 		else {
 			return wordType.generic;
+		}
+	}
+	
+	/*
+	 * Purpose:	Two dictionaries are equal if they have the same filePath
+	 * Parameters:
+	 * 				otherDict:	Dictionary to compare with
+	 * Returns:	True if the two dictionaries have the same filePath, otherwise false
+	 * 
+	 */
+	public boolean equals(Object otherDict) {
+		if (filePath.equals(((Dictionary) otherDict).getFilePath())) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
