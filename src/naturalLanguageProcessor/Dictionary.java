@@ -114,7 +114,7 @@ public class Dictionary {
 	public boolean hasWord(String word) {
 		Word checkWord = new Word(word);
 		try {
-			if (words.floor(checkWord).getWord().equals(word)){
+			if (words.ceiling(checkWord).getWord().equals(word)){
 				return true;
 			} else {
 				return false;
