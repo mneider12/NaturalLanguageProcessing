@@ -2,8 +2,6 @@ package naturalLanguageProcessor;
 
 import java.util.ArrayList;
 
-import naturalLanguageProcessor.Word.wordType;
-
 public class NLPagent {
 	
 	private String sentence;	// Sentence that can be queried
@@ -55,21 +53,27 @@ public class NLPagent {
 	 * Prerequisites:	sentence must not be null
 	 */
 	public void setWords() {
-		wordType type;
+		String type;
 		for (String word : sentence.split(" ")) {
-			type = dictionary.getType(word);
+			type = dictionary.getWord(word).getClass().getSimpleName();
 			switch(type) {
-			case adjective:
+			case "Adjective":
 				words.add(new Adjective(word));
 				break;
-			case noun:
+			case "Noun":
 				words.add(new Noun(word));
 				break;
-			case verb:
+			case "Verb":
 				words.add(new Verb(word));
 				break;
+			case "Article":
+				words.add(new Article(word));
+				break;
+			case "Preposition":
+				words.add(new Preposition(word));
+				break;
 			default:
-				words.add(new Word(word));
+				words.add(new Generic(word));
 			}
 		}
 	}
@@ -91,6 +95,14 @@ public class NLPagent {
 			}
 			
 		}
+	}
+	
+	/*
+	 * Purpose: Return the frames array
+	 * Returns: Frames array
+	 */
+	public ArrayList<Frame> getFrames() {
+		return frames;
 	}
 	
 	

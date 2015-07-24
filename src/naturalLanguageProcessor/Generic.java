@@ -1,15 +1,14 @@
 package naturalLanguageProcessor;
 
-public class Verb extends Word{
+public class Generic extends Word {
 	
-	private final String ABBREVIATION = "v.";
-
-	public Verb(String wordStr) {
+	private final String ABBREVIATION = "";
+	
+	public Generic(String wordStr) {
 		super(wordStr);
 	}
-	
+
 	public String getAbbrev() {
 		return ABBREVIATION;
 	}
-
 }

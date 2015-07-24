@@ -16,7 +16,7 @@ public class SentencesTest {
 	 */
 	@Test
 	public void quickFox() {
-		NLPagent agent = new NLPagent("The quick brown fox jumped over the lazy dog");
+		NLPagent agent = new NLPagent("the quick brown fox jumped over the lazy dog");
 		ArrayList<Adjective> foxDesc = agent.getAdjectives("fox");
 		ArrayList<Adjective> foxDescAns = new ArrayList<Adjective>();
 		foxDescAns.add(new Adjective("quick"));

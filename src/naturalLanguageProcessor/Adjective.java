@@ -9,7 +9,6 @@ public class Adjective extends Word {
 	 */
 	public Adjective(String wordStr) {
 		super(wordStr);
-		setType(wordType.adjective);
 	}
 	
 	/*

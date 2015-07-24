@@ -2,7 +2,6 @@ package unitTests;
 
 import static org.junit.Assert.*;
 import naturalLanguageProcessor.Dictionary;
-import naturalLanguageProcessor.Word.wordType;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -45,10 +44,10 @@ public class DictionaryTest {
 	}
 
 	/*
-	 * Purpose:	Test the getType method
+	 * Purpose:	Test the getWord method
 	 */
 	@Test
-	public void getType() {
-		assertEquals(wordType.verb, dict.getType("jumped"));
+	public void getWord() {
+		assertEquals("Verb", dict.getWord("jumped").getClass().getSimpleName());
 	}
 }

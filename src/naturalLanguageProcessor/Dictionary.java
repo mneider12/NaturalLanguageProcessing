@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.TreeSet;
 
-import naturalLanguageProcessor.Word.wordType;
-
 public class Dictionary {
 	
 	private TreeSet<Word> words;	// store words in local memory. Currently using a Tree since
@@ -80,7 +78,7 @@ public class Dictionary {
 			return false;
 		}
 		String wordStr;
-		String type;;
+		String type;
 		try {
 			wordStr  = line.substring(0, index);;
 			type = line.substring(index + 1);
@@ -99,8 +97,14 @@ public class Dictionary {
 		case "noun":
 			newWord = new Noun(wordStr);
 			break;
+		case "article":
+			newWord = new Article(wordStr);
+			break;
+		case "preposition":
+			newWord = new Preposition(wordStr);
+			break;
 		default:
-			newWord = new Word(wordStr);
+			newWord = new Generic(wordStr);
 		}
 		
 		words.add(newWord);
@@ -116,7 +120,7 @@ public class Dictionary {
 	 * Returns:	true 'word' is found in the dictionary, otherwise false
 	 */
 	public boolean hasWord(String word) {
-		Word checkWord = new Word(word);
+		Word checkWord = new Generic(word);
 		try {
 			if (words.ceiling(checkWord).getWord().equals(word)){
 				return true;
@@ -136,25 +140,16 @@ public class Dictionary {
 		return filePath;
 	}
 	
-	/*
-	 * Purpose: lookup the type of a word if it is in the Dictionary
-	 * Parameters:
-	 * 				wordStr:	The word to lookup a type for
-	 * Returns:	first type that matches the string value of Word, if none match, return null
-	 */
-	public wordType getType(String wordStr) {
-		Word word = new Word(wordStr);
-		Word checkWord = null;
-		checkWord = words.ceiling(word);
-		if (checkWord == null) {
-			return wordType.generic;
+	public Word getWord(String wordStr) {
+		Generic word = new Generic(wordStr);
+		Word checkWord = words.ceiling(word);
+		if (checkWord == null) { 
+			return word;
 		}
 		if (checkWord.getWord().equals(word.getWord())) {
-			return checkWord.getType();
-		} 
-		else {
-			return wordType.generic;
+			return checkWord;
 		}
+		return word;
 	}
 	
 	/*

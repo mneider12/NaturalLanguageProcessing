@@ -11,7 +11,7 @@ public class VerbTest {
 	@Test
 	public void toStringTest() {
 		Word verb = new Verb("run");
-		assertTrue(verb.getType().getAbbrev().equals("v."));
+		assertTrue(verb.getAbbrev().equals("v."));
 		assertTrue(verb.toString().equals("run (v.)"));
 	}
 

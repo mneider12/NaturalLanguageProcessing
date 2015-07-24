@@ -1,15 +1,14 @@
 package naturalLanguageProcessor;
 
-public class Noun extends Word {
+public class Article extends Word {
 	
-	private final String ABBREVIATION = "n.";
+	private final String ABBREVIATION = "art.";
 	
-	public Noun(String wordStr) {
+	public Article(String wordStr) {
 		super(wordStr);
 	}
-	
+
 	public String getAbbrev() {
 		return ABBREVIATION;
 	}
-
 }
