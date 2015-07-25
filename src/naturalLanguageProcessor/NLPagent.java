@@ -21,12 +21,27 @@ public class NLPagent {
 	
 	/*
 	 * Purpose:	Initialize an NLPagent with a sentence set
+	 * Parameters:	
+	 * 				sentence:	sentence to store in memory
 	 */
 	public NLPagent(String sentence) {
 		this();
 		setDictionary(DEFAULTDICT);
 		setSentence(sentence);
 		
+	}
+	
+	/*
+	 * Purpose:	Initialize an NLPagent in interactive mode
+	 * Parameters:	
+	 * 				sentence:	sentence to store in memory
+	 * 				interactive:	boolean whether interactive mode should be on
+	 */
+	public NLPagent(String sentence, boolean interactive) {
+		this();
+		this.interactive = interactive;
+		setDictionary(DEFAULTDICT);
+		setSentence(sentence);
 	}
 	
 	/*
@@ -81,9 +96,15 @@ public class NLPagent {
 				for (Class<? extends Word> wordClass : Utilities.getWordClasses()) {
 					choices.add(wordClass.getSimpleName());
 				}
+				choices.add("unknown");
 				Menu menu = new Menu(choices);
-				String choice = menu.promptChoices();
-				boolean valid = false;
+				type = "";
+				while (type.equals("")) {
+					type = menu.promptChoices();
+				}
+				if (type.equals("unknown")){
+					type = "generic";
+				}
 			}
 			addWord(word, type);
 		}
