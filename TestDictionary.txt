@@ -1,3 +1,8 @@
 strawberry|adjective
 fields|noun
 forever|adverb
+this|pronoun
+is|verb
+not|contraction
+a|article
+drill|noun

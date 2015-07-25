@@ -33,6 +33,9 @@ public class NLPagent {
 	 */
 	public void setDictionary(String filePath) {
 		dictionary = new Dictionary(filePath);
+		if (sentence != null) {
+			setSentence(sentence);		// Re-read sentence
+		}
 	}
 	
 	/*
@@ -53,6 +56,7 @@ public class NLPagent {
 	 * Prerequisites:	sentence must not be null
 	 */
 	public void setWords() {
+		words = new ArrayList<Word>(); 
 		String type;
 		for (String word : sentence.split(" ")) {
 			type = dictionary.getWord(word).getClass().getSimpleName();
@@ -83,6 +87,7 @@ public class NLPagent {
 	 *
 	 */
 	public void setFrames() {
+		frames = new ArrayList<Frame>();
 		ArrayList<Adjective> adjectives = new ArrayList<Adjective>();
 		Frame frame;
 		for (Word word : words) {
@@ -119,6 +124,14 @@ public class NLPagent {
 		}
 		
 	}
+	
+	/*
+	 * Purpose:	Return the words ArrayList
+	 * Returns:	words
+	 */
+	public ArrayList<Word> getWords() {
+		return words;
+	}
 
 	/*
 	 * Purpose:	Return the adjectives that are associated with the given noun in sentence
@@ -132,7 +145,7 @@ public class NLPagent {
 				return frame.getAdjectives();
 			}
 		}
-		return null;
+		return new ArrayList<Adjective>();
 	}
 	
 	

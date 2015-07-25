@@ -30,7 +30,7 @@ public class SentencesTest {
 		
 		// check that non-nouns do not get associated with adjectives
 		ArrayList<Adjective> jump = agent.getAdjectives("jump");
-		assertEquals(null, jump);
+		assertArrayEquals(new ArrayList<Adjective>().toArray(), jump.toArray());
 	}
 
 }
