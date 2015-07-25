@@ -9,6 +9,7 @@ public class NLPagent {
 	private ArrayList<Word> words;
 	private final String DEFAULTDICT = "Dictionary.txt";
 	private Dictionary dictionary;
+	private boolean interactive;	// should the agent respond to user and learn
 
 	/*
 	 * Purpose:	Initialize an NLPagent with nothing set in memory
@@ -26,6 +27,20 @@ public class NLPagent {
 		setDictionary(DEFAULTDICT);
 		setSentence(sentence);
 		
+	}
+	
+	/*
+	 * Purpose:	Turn on interactive mode
+	 */
+	public void interactiveOn() {
+		interactive = true;
+	}
+	
+	/*
+	 * Purpose:	Turn off interactive mode
+	 */
+	public void interactiveOff() {
+		interactive = false;
 	}
 	
 	/*
@@ -60,24 +75,47 @@ public class NLPagent {
 		String type;
 		for (String word : sentence.split(" ")) {
 			type = dictionary.getWord(word).getClass().getSimpleName();
-			switch(type) {
-			case "Adjective":
-				words.add(new Adjective(word));
-				break;
-			case "Noun":
-				words.add(new Noun(word));
-				break;
-			case "Verb":
-				words.add(new Verb(word));
-				break;
-			case "Article":
-				words.add(new Article(word));
-				break;
-			case "Preposition":
-				words.add(new Preposition(word));
-				break;
-			default:
-				words.add(new Generic(word));
+			if (type.equals("Generic") && interactive) {
+				System.out.println("What type of word is " + word + "?");
+				ArrayList<String> choices = new ArrayList<String>();
+				for (Class<? extends Word> wordClass : Utilities.getWordClasses()) {
+					choices.add(wordClass.getSimpleName());
+				}
+				Menu menu = new Menu(choices);
+				String choice = menu.promptChoices();
+				boolean valid = false;
+			}
+			addWord(word, type);
+		}
+	
+	}
+	
+	private void addWord(String wordStr, String type) {
+		switch(type) {
+		case "Adjective":
+			words.add(new Adjective(wordStr));
+			break;
+		case "Noun":
+			words.add(new Noun(wordStr));
+			break;
+		case "Verb":
+			words.add(new Verb(wordStr));
+			break;
+		case "Article":
+			words.add(new Article(wordStr));
+			break;
+		case "Preposition":
+			words.add(new Preposition(wordStr));
+			break;
+		case "Pronoun":
+			words.add(new Pronoun(wordStr));
+			break;
+		default:
+			if (interactive) {
+			
+				
+			} else {
+				words.add(new Generic(wordStr));
 			}
 		}
 	}
@@ -98,7 +136,6 @@ public class NLPagent {
 				frames.add(frame);
 				adjectives = new ArrayList<Adjective>();
 			}
-			
 		}
 	}
 	
