@@ -17,6 +17,9 @@ public class NLPagent {
 	public NLPagent() {
 		words = new ArrayList<Word>();
 		frames = new ArrayList<Frame>();
+		setDictionary(DEFAULTDICT);
+		sentence = "";
+		interactive = false;
 	}
 	
 	/*
@@ -26,7 +29,6 @@ public class NLPagent {
 	 */
 	public NLPagent(String sentence) {
 		this();
-		setDictionary(DEFAULTDICT);
 		setSentence(sentence);
 		
 	}
@@ -150,12 +152,15 @@ public class NLPagent {
 		ArrayList<Adjective> adjectives = new ArrayList<Adjective>();
 		Frame frame;
 		for (Word word : words) {
+			// This loop finds Frames with a noun preceeded by adjectives
 			if (word.getClass() == Adjective.class) {
 				adjectives.add((Adjective) word);
 			} else if (word.getClass() == Noun.class) {
 				frame = new Frame((Noun) word, adjectives);
 				frames.add(frame);
 				adjectives = new ArrayList<Adjective>();
+			} else {
+				adjectives = new ArrayList<Adjective>();	//reset for non adj / nouns
 			}
 		}
 	}
@@ -204,6 +209,11 @@ public class NLPagent {
 			}
 		}
 		return new ArrayList<Adjective>();
+	}
+
+	public Noun getTarget(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

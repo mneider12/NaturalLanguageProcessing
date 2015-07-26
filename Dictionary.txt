@@ -6,3 +6,4 @@ jumped|verb
 over|preposition
 lazy|adjective
 dog|noun
+big|adjective
