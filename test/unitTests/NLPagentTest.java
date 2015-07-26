@@ -55,7 +55,7 @@ public class NLPagentTest {
 		NLPagent agent = new NLPagent("the quick brown fox jumped over the lazy dog");
 		Noun dog = new Noun("dog");
 		Noun jumpedTarget = agent.getTarget("over");
-		assertEquals(dog, null);
+		assertEquals(dog, jumpedTarget);
 	}
 	
 	/*

@@ -3,7 +3,7 @@ package naturalLanguageProcessor;
 /*
  * Purpose:	Describe a prepositional phrase of the form noun -> verb -> preposition -> noun
  */
-public class PrepClauseFrame {
+public class PrepClauseFrame implements Frame {
 
 	private Noun subject;
 	private Verb action;
@@ -14,7 +14,10 @@ public class PrepClauseFrame {
 	 * Purpose:	Initialize an empty frame
 	 */
 	public PrepClauseFrame() {
-		
+		subject = null;
+		action = null;
+		prep = null;
+		target = null;
 	}
 	
 	/*

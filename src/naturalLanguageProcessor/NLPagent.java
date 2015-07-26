@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class NLPagent {
 	
 	private String sentence;	// Sentence that can be queried
-	private ArrayList<NounDescFrame> frames;
+	private ArrayList<Frame> frames;
 	private ArrayList<Word> words;
 	private final String DEFAULTDICT = "Dictionary.txt";
 	private Dictionary dictionary;
@@ -16,7 +16,7 @@ public class NLPagent {
 	 */
 	public NLPagent() {
 		words = new ArrayList<Word>();
-		frames = new ArrayList<NounDescFrame>();
+		frames = new ArrayList<Frame>();
 		setDictionary(DEFAULTDICT);
 		sentence = "";
 		interactive = false;
@@ -148,17 +148,18 @@ public class NLPagent {
 	 *
 	 */
 	public void setFrames() {
-		frames = new ArrayList<NounDescFrame>();
+		frames = new ArrayList<Frame>();
 		ArrayList<Adjective> adjectives = new ArrayList<Adjective>();
-		NounDescFrame frame;
+		NounDescFrame nounDescFrame;
 		for (Word word : words) {
 			// This loop finds Frames with a noun preceeded by adjectives
 			if (word.getClass() == Adjective.class) {
 				adjectives.add((Adjective) word);
 			} else if (word.getClass() == Noun.class) {
-				frame = new NounDescFrame((Noun) word, adjectives);
-				frames.add(frame);
+				nounDescFrame = new NounDescFrame((Noun) word, adjectives);
+				frames.add(nounDescFrame);
 				adjectives = new ArrayList<Adjective>();
+				
 			} else {
 				adjectives = new ArrayList<Adjective>();	//reset for non adj / nouns
 			}
@@ -170,7 +171,7 @@ public class NLPagent {
 	 * Purpose: Return the frames array
 	 * Returns: Frames array
 	 */
-	public ArrayList<NounDescFrame> getFrames() {
+	public ArrayList<Frame> getFrames() {
 		return frames;
 	}
 	
@@ -204,9 +205,11 @@ public class NLPagent {
 	 * Returns:	ArrayList of Adjectives describing the given noun
 	 */
 	public ArrayList<Adjective> getAdjectives(String noun) {
-		for (NounDescFrame frame : frames) {
-			if (frame.getNoun().getWord().equals(noun)) {
-				return frame.getAdjectives();
+		for (Frame frame : frames) {
+			if (frame.getClass() == NounDescFrame.class) {
+				if (((NounDescFrame) frame).getNoun().getWord().equals(noun)) {
+					return ((NounDescFrame) frame).getAdjectives();
+				}
 			}
 		}
 		return new ArrayList<Adjective>();

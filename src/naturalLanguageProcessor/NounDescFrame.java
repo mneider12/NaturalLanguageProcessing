@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /*
  * Purpose:	Frame holding a noun and the adjectives describing it
  */
-public class NounDescFrame {
+public class NounDescFrame implements Frame {
 	
 	private Noun noun;
 	private ArrayList<Adjective> adjectives;
