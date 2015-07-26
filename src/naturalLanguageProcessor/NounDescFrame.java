@@ -2,16 +2,19 @@ package naturalLanguageProcessor;
 
 import java.util.ArrayList;
 
-public class Frame {
+/*
+ * Purpose:	Frame holding a noun and the adjectives describing it
+ */
+public class NounDescFrame {
 	
 	private Noun noun;
 	private ArrayList<Adjective> adjectives;
 
-	public Frame() {
+	public NounDescFrame() {
 		
 	}
 	
-	public Frame(Noun noun, ArrayList<Adjective> adjectives) {
+	public NounDescFrame(Noun noun, ArrayList<Adjective> adjectives) {
 		
 		this.noun = noun;
 		this.adjectives = adjectives;
