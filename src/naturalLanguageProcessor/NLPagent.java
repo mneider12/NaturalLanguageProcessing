@@ -149,19 +149,33 @@ public class NLPagent {
 	 */
 	public void setFrames() {
 		frames = new ArrayList<Frame>();
-		ArrayList<Adjective> adjectives = new ArrayList<Adjective>();
+		ArrayList<Adjective> adjectives = new ArrayList<Adjective>(); //used for NounDescFrames
+		PrepClauseFrame prepFrame = new PrepClauseFrame();
 		NounDescFrame nounDescFrame;
+		String wordType;
 		for (Word word : words) {
-			// This loop finds Frames with a noun preceeded by adjectives
-			if (word.getClass() == Adjective.class) {
+			wordType = word.getClass().getSimpleName();
+			switch (wordType) {
+			case "Adjective":
 				adjectives.add((Adjective) word);
-			} else if (word.getClass() == Noun.class) {
+				break;
+			case "Noun":
 				nounDescFrame = new NounDescFrame((Noun) word, adjectives);
 				frames.add(nounDescFrame);
 				adjectives = new ArrayList<Adjective>();
-				
-			} else {
-				adjectives = new ArrayList<Adjective>();	//reset for non adj / nouns
+				if (prepFrame.getPrep() == null) {
+					prepFrame = new PrepClauseFrame();
+				}
+				if (prepFrame.getSubject() == null) {
+					prepFrame.setSubject((Noun) word); 
+				} else {
+					prepFrame.setTarget((Noun) word);
+					frames.add(prepFrame);
+				}
+				break;
+			}
+			if (wordType.equals("Adjective") == false && wordType.equals("Noun") == false) {
+				adjectives = new ArrayList<Adjective>();	//reset for non adj / nouns	
 			}
 			
 		}
