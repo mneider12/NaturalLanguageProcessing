@@ -30,7 +30,7 @@ public class NounDescFrame implements Frame {
 	}
 	
 	public String toString() {
-		String ret = "The " + noun.getWord() + " is ";
+		String ret = "The " + noun.getWord();
 		int size = adjectives.size();
 		if (size > 0) {
 			ret = ret + " is " + adjectives.get(0).getWord();

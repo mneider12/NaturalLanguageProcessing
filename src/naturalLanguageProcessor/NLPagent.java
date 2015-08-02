@@ -163,21 +163,16 @@ public class NLPagent {
 				nounDescFrame = new NounDescFrame((Noun) word, adjectives);
 				frames.add(nounDescFrame);
 				adjectives = new ArrayList<Adjective>();
-				if (prepFrame.getPrep() == null) {
-					prepFrame = new PrepClauseFrame();
-				}
-				if (prepFrame.getSubject() == null) {
-					prepFrame.setSubject((Noun) word); 
-				} else {
-					prepFrame.setTarget((Noun) word);
-					frames.add(prepFrame);
-				}
 				break;
 			}
 			if (wordType.equals("Adjective") == false && wordType.equals("Noun") == false) {
 				adjectives = new ArrayList<Adjective>();	//reset for non adj / nouns	
 			}
-			
+			prepFrame.add(word);
+			if (prepFrame.isComplete()) {
+				frames.add(prepFrame);
+				prepFrame = new PrepClauseFrame();
+			}
 		}
 	}
 	

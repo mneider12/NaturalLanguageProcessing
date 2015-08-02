@@ -5,8 +5,10 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import naturalLanguageProcessor.Adjective;
+import naturalLanguageProcessor.Frame;
 import naturalLanguageProcessor.NLPagent;
 import naturalLanguageProcessor.Noun;
+import naturalLanguageProcessor.PrepClauseFrame;
 import naturalLanguageProcessor.Verb;
 
 import org.junit.Test;
@@ -54,8 +56,17 @@ public class NLPagentTest {
 	public void quickFoxPrep() {
 		NLPagent agent = new NLPagent("the quick brown fox jumped over the lazy dog");
 		Noun dog = new Noun("dog");
-		Noun jumpedTarget = agent.getTarget("over");
-		assertEquals(dog, jumpedTarget);
+		PrepClauseFrame clause = null;
+		int clauseCnt = 0;
+		ArrayList<Frame> frames = agent.getFrames();
+		
+		for (Frame frame : frames) {
+			if (frame.getClass() == PrepClauseFrame.class) {
+				clause = (PrepClauseFrame) frame;
+			}
+		}
+		
+		assertEquals(dog, null);
 	}
 	
 	/*

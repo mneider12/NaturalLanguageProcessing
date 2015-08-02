@@ -14,10 +14,7 @@ public class PrepClauseFrame implements Frame {
 	 * Purpose:	Initialize an empty frame
 	 */
 	public PrepClauseFrame() {
-		subject = null;
-		action = null;
-		prep = null;
-		target = null;
+		reset();
 	}
 	
 	/*
@@ -28,6 +25,47 @@ public class PrepClauseFrame implements Frame {
 		this.action = action;
 		this.prep = prep;
 		this.target = target;
+	}
+	
+	/*
+	 * Purpose:	Add a generic word to the frame. If the word is in the wrong order, reset
+	 */
+	public void add(Word word) {
+		String wordType = word.getClass().getSimpleName();
+		switch (wordType) {
+		case "Noun":
+			if (prep != null && target == null) {
+				target = (Noun) word;
+			} else {
+				reset();
+				subject = (Noun) word;
+			}
+			break;
+		case "Verb":
+			if (subject != null && action == null) {
+				action = (Verb) word;
+			} else {
+				reset();
+			}
+			break;
+		case "Preposition":
+			if (action != null && prep == null) {
+				prep = (Preposition) word;
+			} else {
+				reset();
+			}
+			break;
+		}
+	}
+	
+	/*
+	 * Purpose:	Reset the frame to blank
+	 */
+	public void reset() {
+		subject = null;
+		action = null;
+		prep = null;
+		target = null;
 	}
 	
 	/*
@@ -88,5 +126,22 @@ public class PrepClauseFrame implements Frame {
 	 */
 	public Verb getAction() {
 		return action;
+	}
+	
+	/*
+	 * Purpose: determine if a clause frame is complete
+	 * Returns:	true if all members of the frame are non-null, otherwise false
+	 */
+	public boolean isComplete() {
+		return target != null;
+	}
+	
+	/*
+	 * Purpose:	string representation of the Frame
+	 * Returns: the words in the clause
+	 */
+	public String toString() {
+		return subject.getWord() + " " + action.getWord() + " " +
+				prep.getWord() + " " + target.getWord();
 	}
 }
