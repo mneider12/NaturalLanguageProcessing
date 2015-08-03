@@ -112,6 +112,28 @@ public class Dictionary {
 		return true;
 	}
 	
+	/*
+	 * Purpose:	Add a word to this Dictionary
+	 */
+	public void addWord(Word word) {
+		words.add(word);
+	}
+	
+	/*
+	 * Purpose: Add a word to this dictionary and store it to memory
+	 */
+	public void addWordToFile(Word word) {
+		addWord(word);
+		//TODO Figure out how to write to a file
+	}
+	
+	/*
+	 * Purpose: Remove a word from this Dictionary
+	 */
+	public void removeWord(Word word) {
+		words.remove(word);
+	}
+	
 	
 	/*
 	 * Purpose:	Check if a string is defined in this dictionary
@@ -172,4 +194,14 @@ public class Dictionary {
 			return false;
 		}
 	}
+	
+	/*
+	 * Purpose:	return a String representation of this Dictionary
+	 * Returns:	String representation of the words in this dictionary
+	 */
+	public String toString(){
+		return words.toString();
+	}
+	
+	
 }
