@@ -20,3 +20,5 @@ ate|verb
 sweet|adjective
 frail|adjective
 grandmother|noun
+cow|noun
+moon|noun
