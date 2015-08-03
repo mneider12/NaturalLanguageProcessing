@@ -140,6 +140,12 @@ public class Dictionary {
 		return filePath;
 	}
 	
+	/*
+	 * Purpose:	Find a word in the dictionary matching the word string
+	 * Parameters:	
+	 * 				wordStr:	word to search for
+	 * Returns:	A Word from the dictionary if one matches wordStr, else a generic word
+	 */
 	public Word getWord(String wordStr) {
 		Generic word = new Generic(wordStr);
 		Word checkWord = words.ceiling(word);

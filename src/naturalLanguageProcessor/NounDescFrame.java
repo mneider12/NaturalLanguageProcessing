@@ -10,10 +10,16 @@ public class NounDescFrame implements Frame {
 	private Noun noun;
 	private ArrayList<Adjective> adjectives;
 
+	/*
+	 * Purpose:	Initialize an empty frame
+	 */
 	public NounDescFrame() {
 		
 	}
 	
+	/*
+	 * Purpose:	Initialize a fully formed frame
+	 */
 	public NounDescFrame(Noun noun, ArrayList<Adjective> adjectives) {
 		
 		this.noun = noun;
@@ -21,10 +27,18 @@ public class NounDescFrame implements Frame {
 		
 	}
 	
+	/*
+	 * Purpose:	return the noun associated with this frame
+	 * Returns:	noun
+	 */
 	public Noun getNoun() {
 		return noun;
 	}
 	
+	/*
+	 * Purpose:	return the adjectives associated with this frame
+	 * Returns:	adjectives
+	 */
 	public ArrayList<Adjective> getAdjectives() {
 		return adjectives;
 	}
@@ -51,24 +65,36 @@ public class NounDescFrame implements Frame {
 		}
 	}
 	
+	/*
+	 * Purpose:	reset this frame to its empty state
+	 */
 	public void reset() {
 		noun = null;
 		adjectives = new ArrayList<Adjective>();
 	}
 	
+	/*
+	 * Purpose:	return a String representation of this frame
+	 * Returns:	The <noun> is <adjective>, <adjective>, ... and <adjective>
+	 */
 	public String toString() {
 		String ret = "The " + noun.getWord();
 		int size = adjectives.size();
 		if (size > 0) {
 			ret = ret + " is " + adjectives.get(0).getWord();
+			for (int i = 1; i < size - 1; i++) {
+				ret = ret + ", " + adjectives.get(i).getWord();
+			}
+			ret = ret + ", and " + adjectives.get(size - 1).getWord();
 		}
-		for (int i = 1; i < size; i++) {
-			ret = ret + " and " + adjectives.get(i).getWord();
-		}
+		
 		return ret;
 	}
 
-	@Override
+	/*
+	 * Purpose:	Check whether this frame is in a valid complete state
+	 * Returns:	True if there is a noun set, otherwise false
+	 */
 	public boolean isComplete() {
 		return noun != null;
 	}

@@ -13,3 +13,10 @@ sits|verb
 on|preposition
 yonder|adjective
 hill|noun
+bad|adjective
+grey|adjective
+wolf|noun
+ate|verb
+sweet|adjective
+frail|adjective
+grandmother|noun
