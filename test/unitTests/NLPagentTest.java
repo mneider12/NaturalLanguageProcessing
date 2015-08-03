@@ -63,10 +63,11 @@ public class NLPagentTest {
 		for (Frame frame : frames) {
 			if (frame.getClass() == PrepClauseFrame.class) {
 				clause = (PrepClauseFrame) frame;
+				clauseCnt++;
 			}
 		}
-		
-		assertEquals(dog, null);
+		assertEquals(1, clauseCnt);
+		assertEquals(dog, clause.getTarget());
 	}
 	
 	/*
