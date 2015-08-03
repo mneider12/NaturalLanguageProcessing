@@ -14,7 +14,7 @@ public class NounDescFrame implements Frame {
 	 * Purpose:	Initialize an empty frame
 	 */
 	public NounDescFrame() {
-		
+		adjectives = new ArrayList<Adjective>();
 	}
 	
 	/*
@@ -85,7 +85,10 @@ public class NounDescFrame implements Frame {
 			for (int i = 1; i < size - 1; i++) {
 				ret = ret + ", " + adjectives.get(i).getWord();
 			}
-			ret = ret + ", and " + adjectives.get(size - 1).getWord();
+			if (size > 2) {
+				ret = ret + ",";
+			}
+			ret = ret + " and " + adjectives.get(size - 1).getWord();
 		}
 		
 		return ret;
