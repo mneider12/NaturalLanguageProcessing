@@ -149,26 +149,15 @@ public class NLPagent {
 	 */
 	public void setFrames() {
 		frames = new ArrayList<Frame>();
-		ArrayList<Adjective> adjectives = new ArrayList<Adjective>(); //used for NounDescFrames
 		PrepClauseFrame prepFrame = new PrepClauseFrame();
-		NounDescFrame nounDescFrame;
-		String wordType;
+		NounDescFrame nounDescFrame = new NounDescFrame();
 		for (Word word : words) {
-			wordType = word.getClass().getSimpleName();
-			switch (wordType) {
-			case "Adjective":
-				adjectives.add((Adjective) word);
-				break;
-			case "Noun":
-				nounDescFrame = new NounDescFrame((Noun) word, adjectives);
+			nounDescFrame.addWord(word);
+			if (nounDescFrame.isComplete()) {
 				frames.add(nounDescFrame);
-				adjectives = new ArrayList<Adjective>();
-				break;
+				nounDescFrame = new NounDescFrame();
 			}
-			if (wordType.equals("Adjective") == false && wordType.equals("Noun") == false) {
-				adjectives = new ArrayList<Adjective>();	//reset for non adj / nouns	
-			}
-			prepFrame.add(word);
+			prepFrame.addWord(word);
 			if (prepFrame.isComplete()) {
 				frames.add(prepFrame);
 				prepFrame = new PrepClauseFrame();
@@ -223,10 +212,13 @@ public class NLPagent {
 		}
 		return new ArrayList<Adjective>();
 	}
-
-	public Noun getTarget(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	/*
+	 * Purpose: Override toString behavior. Describe frames for current sentence
+	 * Returns: toString method on all stored frames
+	 */
+	public String toString(){
+		return frames.toString();
 	}
 	
 	

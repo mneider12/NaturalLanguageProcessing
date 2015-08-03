@@ -30,7 +30,7 @@ public class PrepClauseFrame implements Frame {
 	/*
 	 * Purpose:	Add a generic word to the frame. If the word is in the wrong order, reset
 	 */
-	public void add(Word word) {
+	public void addWord(Word word) {
 		String wordType = word.getClass().getSimpleName();
 		switch (wordType) {
 		case "Noun":

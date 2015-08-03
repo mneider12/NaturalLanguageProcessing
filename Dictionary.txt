@@ -7,3 +7,9 @@ over|preposition
 lazy|adjective
 dog|noun
 big|adjective
+green|adjective
+barn|noun
+sits|verb
+on|preposition
+yonder|adjective
+hill|noun

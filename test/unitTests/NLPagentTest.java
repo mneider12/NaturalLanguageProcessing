@@ -67,7 +67,7 @@ public class NLPagentTest {
 			}
 		}
 		assertEquals(1, clauseCnt);
-		assertEquals(dog, clause.getTarget());
+		assertEquals(dog, clause.getTarget() );
 	}
 	
 	/*
