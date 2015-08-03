@@ -90,10 +90,10 @@ public class NLPagent {
 	public void setWords() {
 		words = new ArrayList<Word>(); 
 		String type;
-		for (String word : sentence.split(" ")) {
-			type = dictionary.getWord(word).getClass().getSimpleName();
-			if (type.equals("Generic") && interactive) {
-				System.out.println("What type of word is " + word + "?");
+		for (String wordStr : sentence.split(" ")) {
+			Word word = dictionary.getWord(wordStr);
+			if (word.getClass().getSimpleName().equals("Generic") && interactive) {
+				System.out.println("What type of word is " + wordStr + "?");
 				ArrayList<String> choices = new ArrayList<String>();
 				for (Class<? extends Word> wordClass : Utilities.getWordClasses()) {
 					choices.add(wordClass.getSimpleName());
@@ -107,12 +107,21 @@ public class NLPagent {
 				if (type.equals("unknown")){
 					type = "generic";
 				}
+				addWord(word.getWord(), type);
+			} else {
+				words.add(word);
 			}
-			addWord(word, type);
 		}
 	
 	}
 	
+	/*
+	 * Purpose:	add a word to words based on a String type of the word to add.
+	 * 			Used for learning from a menu driver
+	 * Parameters:
+	 * 				wordStr: the string value of the word to add
+	 * 				type:	the string value of the type of word
+	 */
 	private void addWord(String wordStr, String type) {
 		switch(type) {
 		case "Adjective":
