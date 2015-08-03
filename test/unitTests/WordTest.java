@@ -7,8 +7,14 @@ import naturalLanguageProcessor.Verb;
 
 import org.junit.Test;
 
+/*
+ * Purpose:	Test methods in Word
+ */
 public class WordTest {
 
+	/*
+	 * Purpose:	test the compareTo method for Word. Comparison is based on word string and type
+	 */
 	@Test
 	public void compareToTest() {
 		Word verb = new Verb("back");
