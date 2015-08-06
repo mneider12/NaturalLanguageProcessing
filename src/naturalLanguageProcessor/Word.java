@@ -1,6 +1,11 @@
 package naturalLanguageProcessor;
 
-public abstract class Word implements Comparable<Word> {
+import java.io.Serializable;
+
+public abstract class Word implements Comparable<Word>, Serializable {
+	
+
+	private static final long serialVersionUID = -6669399627554690594L;
 	
 	private String wordStr;	// String value of the word
 

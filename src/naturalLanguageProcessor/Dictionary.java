@@ -1,12 +1,17 @@
 package naturalLanguageProcessor;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Scanner;
 import java.util.TreeSet;
 
-public class Dictionary {
+public class Dictionary implements Serializable {
 	
+	private static final long serialVersionUID = -3037457060036719550L;	// generated serial ID
+
 	private TreeSet<Word> words;	// store words in local memory. Currently using a Tree since
 									// lookup often involves checking for nearby words
 	
@@ -124,7 +129,19 @@ public class Dictionary {
 	 */
 	public void addWordToFile(Word word) {
 		addWord(word);
-		//TODO Figure out how to write to a file
+		try
+	      {
+	         FileOutputStream fileOut =
+	         new FileOutputStream(filePath);
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         out.writeObject(e);
+	         out.close();
+	         fileOut.close();
+	         System.out.printf("Serialized data is saved in /tmp/employee.ser");
+	      }catch(IOException i)
+	      {
+	          i.printStackTrace();
+	      }
 	}
 	
 	/*
