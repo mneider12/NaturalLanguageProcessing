@@ -134,7 +134,7 @@ public class Dictionary implements Serializable {
 	         FileOutputStream fileOut =
 	         new FileOutputStream(filePath);
 	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	         out.writeObject(e);
+	         //out.writeObject(e);
 	         out.close();
 	         fileOut.close();
 	         System.out.printf("Serialized data is saved in /tmp/employee.ser");
