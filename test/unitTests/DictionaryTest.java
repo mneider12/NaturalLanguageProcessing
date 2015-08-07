@@ -1,7 +1,13 @@
 package unitTests;
 
 import static org.junit.Assert.*;
+
+import java.io.File;
+import java.io.IOException;
+
 import naturalLanguageProcessor.Dictionary;
+import naturalLanguageProcessor.Noun;
+import naturalLanguageProcessor.Word;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -49,5 +55,25 @@ public class DictionaryTest {
 	@Test
 	public void getWord() {
 		assertEquals("Verb", dict.getWord("jumped").getClass().getSimpleName());
+	}
+	
+	/*
+	 * Purpose: Test adding a word to a Dictionary file
+	 */
+	@Test
+	public void addWordToFileTest() {
+		File file = new File("TestLearnedDictionary.ser");
+		try {
+			if (!file.createNewFile()) {
+				fail("TestLearnedDictionary.ser already exists");
+			}
+			Dictionary dict = new Dictionary("TestLearnedDictionary.ser");
+			dict.addWordToFile(new Noun("blueberry"));
+		} catch (IOException e) {
+			fail(e.getMessage());
+		}
+			Dictionary dict2 = new Dictionary("TestLearnedDictionary.ser");
+			assertEquals(new Noun("blueberry"), dict2.getWord("blueberry"));
+
 	}
 }

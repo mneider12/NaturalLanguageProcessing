@@ -1,8 +1,10 @@
 package naturalLanguageProcessor;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Scanner;
@@ -77,6 +79,7 @@ public class Dictionary implements Serializable {
 	 * Returns:	True if a word was successfully added, otherwise false
 	 */
 	private boolean add(String line) {
+//TODO - add serializable retrieval
 		
 		int index = line.indexOf('|');
 		if (index <= 0) {
@@ -134,10 +137,9 @@ public class Dictionary implements Serializable {
 	         FileOutputStream fileOut =
 	         new FileOutputStream(filePath);
 	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	         //out.writeObject(e);
+	         out.writeObject(word);
 	         out.close();
 	         fileOut.close();
-	         System.out.printf("Serialized data is saved in /tmp/employee.ser");
 	      }catch(IOException i)
 	      {
 	          i.printStackTrace();
