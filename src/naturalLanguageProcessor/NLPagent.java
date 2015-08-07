@@ -92,26 +92,22 @@ public class NLPagent {
 		String type;
 		for (String wordStr : sentence.split(" ")) {
 			Word word = dictionary.getWord(wordStr);
-			if (word.getClass().getSimpleName().equals("Generic")) {
-				if (interactive) {
-					System.out.println("What type of word is " + wordStr + "?");
-					ArrayList<String> choices = new ArrayList<String>();
-					for (Class<? extends Word> wordClass : Utilities.getWordClasses()) {
-						choices.add(wordClass.getSimpleName());
-					}
-					choices.add("unknown");
-					Menu menu = new Menu(choices);
-					type = "";
-					while (type.equals("")) {
-						type = menu.promptChoices();
-					}
-					if (type.equals("unknown")){
-						type = "generic";
-					}
-					addWord(word.getWord(), type);
-				} else {
-					
+			if (word.getClass().getSimpleName().equals("Generic") && interactive) {
+				System.out.println("What type of word is " + wordStr + "?");
+				ArrayList<String> choices = new ArrayList<String>();
+				for (Class<? extends Word> wordClass : Utilities.getWordClasses()) {
+					choices.add(wordClass.getSimpleName());
 				}
+				choices.add("unknown");
+				Menu menu = new Menu(choices);
+				type = "";
+				while (type.equals("")) {
+					type = menu.promptChoices();
+				}
+				if (type.equals("unknown")){
+					type = "generic";
+				}
+				addWord(word.getWord(), type);
 			} else {
 				words.add(word);
 			}
