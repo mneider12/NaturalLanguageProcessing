@@ -50,26 +50,31 @@ public class Dictionary implements Serializable {
 		this.filePath = filePath;
 		words = new TreeSet<Word>();
 		
-		Scanner r = null;
-		try{
-			r = new Scanner(new File(filePath));
-		} catch(IOException e) {
-			System.out.println(e);
-			return false;
-		}
+		ObjectInputStream obj_in = null;
 		
-		int lnCnt = 0;
-		boolean success = true;
-		while(r.hasNext()) {
-			lnCnt++;
-			String line = r.nextLine();
-			if (add(line) == false) {
-				System.out.println("Line " + lnCnt + " \"" + line + "\" was unreadable");
-				success = false;
+		try {
+		// Read from disk using FileInputStream
+		FileInputStream f_in = new 
+			FileInputStream(filePath);
+
+		// Read object using ObjectInputStream
+		obj_in = new ObjectInputStream (f_in);
+
+		// Read an object
+		Word word = (Word) obj_in.readObject();
+
+		words.add(word);
+		} catch (IOException | ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				obj_in.close();
+			} catch (NullPointerException | IOException e) {
+			
 			}
 		}
-		r.close();
-		return success;
+		
+		return true;
 	}
 	
 	/*

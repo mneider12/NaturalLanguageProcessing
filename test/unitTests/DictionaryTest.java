@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 import naturalLanguageProcessor.Dictionary;
 import naturalLanguageProcessor.Noun;
@@ -72,8 +73,20 @@ public class DictionaryTest {
 		} catch (IOException e) {
 			fail(e.getMessage());
 		}
-			Dictionary dict2 = new Dictionary("TestLearnedDictionary.ser");
-			assertEquals(new Noun("blueberry"), dict2.getWord("blueberry"));
+		Dictionary dict2 = new Dictionary("TestLearnedDictionary.ser");
+		assertEquals(new Noun("blueberry"), dict2.getWord("blueberry"));
+		
+		try {
+		    Files.delete(file);
+		} catch (NoSuchFileException x) {
+		    System.err.format("%s: no such" + " file or directory%n", path);
+		} catch (DirectoryNotEmptyException x) {
+		    System.err.format("%s not empty%n", path);
+		} catch (IOException x) {
+		    // File permission problems are caught here.
+		    System.err.println(x);
+		}
+		
 
 	}
 }
