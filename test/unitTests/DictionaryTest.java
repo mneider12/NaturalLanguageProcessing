@@ -4,7 +4,11 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import naturalLanguageProcessor.Dictionary;
 import naturalLanguageProcessor.Noun;
@@ -62,9 +66,11 @@ public class DictionaryTest {
 	 * Purpose: Test adding a word to a Dictionary file
 	 */
 	@Test
-	public void addWordToFileTest() {
+	public void addWordToFileTest() throws IOException {
 		File file = new File("TestLearnedDictionary.ser");
-		try {
+		file.createNewFile();
+		file.delete();
+		/*try {
 			if (!file.createNewFile()) {
 				fail("TestLearnedDictionary.ser already exists");
 			}
@@ -75,17 +81,7 @@ public class DictionaryTest {
 		}
 		Dictionary dict2 = new Dictionary("TestLearnedDictionary.ser");
 		assertEquals(new Noun("blueberry"), dict2.getWord("blueberry"));
-		
-		try {
-		    Files.delete(file);
-		} catch (NoSuchFileException x) {
-		    System.err.format("%s: no such" + " file or directory%n", path);
-		} catch (DirectoryNotEmptyException x) {
-		    System.err.format("%s not empty%n", path);
-		} catch (IOException x) {
-		    // File permission problems are caught here.
-		    System.err.println(x);
-		}
+		assertTrue(file.delete());*/
 		
 
 	}

@@ -50,28 +50,15 @@ public class Dictionary implements Serializable {
 		this.filePath = filePath;
 		words = new TreeSet<Word>();
 		
-		ObjectInputStream obj_in = null;
 		
-		try {
-		// Read from disk using FileInputStream
-		FileInputStream f_in = new 
-			FileInputStream(filePath);
-
-		// Read object using ObjectInputStream
-		obj_in = new ObjectInputStream (f_in);
+		try (FileInputStream f_in = new FileInputStream(filePath); 
+				ObjectInputStream obj_in = new ObjectInputStream (f_in);){
 
 		// Read an object
 		Word word = (Word) obj_in.readObject();
-
 		words.add(word);
 		} catch (IOException | ClassNotFoundException e) {
 			System.out.println(e.getMessage());
-		} finally {
-			try {
-				obj_in.close();
-			} catch (NullPointerException | IOException e) {
-			
-			}
 		}
 		
 		return true;
