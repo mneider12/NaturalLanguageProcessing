@@ -1,5 +1,6 @@
 package naturalLanguageProcessor;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -49,16 +50,17 @@ public class Dictionary implements Serializable {
 	public boolean load(String filePath) {
 		this.filePath = filePath;
 		words = new TreeSet<Word>();
-		
-		
+			
 		try (FileInputStream f_in = new FileInputStream(filePath); 
 				ObjectInputStream obj_in = new ObjectInputStream (f_in);){
-
-		// Read an object
-		Word word = (Word) obj_in.readObject();
-		words.add(word);
+			while (true) {
+				Word word = (Word) obj_in.readObject();
+				words.add(word);
+			}
 		} catch (IOException | ClassNotFoundException e) {
-			System.out.println(e.getMessage());
+			if (words.size() == 0) {
+				System.out.println(e.getMessage());
+			}
 		}
 		
 		return true;
