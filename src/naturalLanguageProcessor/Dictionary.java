@@ -1,14 +1,13 @@
 package naturalLanguageProcessor;
 
-import java.io.EOFException;
-import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.Scanner;
+
 import java.util.TreeSet;
 
 public class Dictionary implements Serializable {
@@ -66,53 +65,6 @@ public class Dictionary implements Serializable {
 		return true;
 	}
 	
-	/*
-	 * Purpose:	Adds a word to the words Set if line is in the proper format
-	 * Parameters:
-	 * 				line:	a single line in a text file. See load for proper format
-	 * Returns:	True if a word was successfully added, otherwise false
-	 */
-	private boolean add(String line) {
-//TODO - add serializable retrieval
-		
-		int index = line.indexOf('|');
-		if (index <= 0) {
-			return false;
-		}
-		String wordStr;
-		String type;
-		try {
-			wordStr  = line.substring(0, index);;
-			type = line.substring(index + 1);
-		} catch (StringIndexOutOfBoundsException e) {
-			return false;
-		}
-		
-		Word newWord;
-		switch(type) {
-		case "adjective":
-			newWord = new Adjective(wordStr);
-			break;
-		case "verb":
-			newWord = new Verb(wordStr);
-			break;
-		case "noun":
-			newWord = new Noun(wordStr);
-			break;
-		case "article":
-			newWord = new Article(wordStr);
-			break;
-		case "preposition":
-			newWord = new Preposition(wordStr);
-			break;
-		default:
-			newWord = new Generic(wordStr);
-		}
-		
-		words.add(newWord);
-		
-		return true;
-	}
 	
 	/*
 	 * Purpose:	Add a word to this Dictionary
@@ -126,8 +78,7 @@ public class Dictionary implements Serializable {
 	 */
 	public void addWordToFile(Word word) {
 		addWord(word);
-		try
-	      {
+		try {
 	         FileOutputStream fileOut =
 	         new FileOutputStream(filePath);
 	         ObjectOutputStream out = new ObjectOutputStream(fileOut);

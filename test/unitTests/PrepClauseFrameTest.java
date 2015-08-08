@@ -22,7 +22,7 @@ public class PrepClauseFrameTest {
 	 */
 	@Test
 	public void addWordTest() {
-		Dictionary dict = new Dictionary("Dictionary.txt");
+		Dictionary dict = new Dictionary("Dictionary.ser");
 		PrepClauseFrame frame = new PrepClauseFrame();
 		String sentence = "the cow jumped over the moon";
 		ArrayList<PrepClauseFrame> frames = new ArrayList<PrepClauseFrame>();

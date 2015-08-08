@@ -23,7 +23,7 @@ public class NLPagentTest {
 		NLPagent agent = new NLPagent("This is not a drill");
 		Verb testWord = new Verb("is");
 		assertFalse(agent.getWords().get(1).equals(testWord));
-		agent.setDictionary("TestDictionary.txt");
+		agent.setDictionary("TestDictionary.ser");
 		assertEquals(testWord, agent.getWords().get(1));
 	}
 	

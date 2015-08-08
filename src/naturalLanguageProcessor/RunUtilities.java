@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/*
+ * Purpose:	Provide a menu to run utilities
+ */
 public class RunUtilities {
 
 	public static void main(String[] args){

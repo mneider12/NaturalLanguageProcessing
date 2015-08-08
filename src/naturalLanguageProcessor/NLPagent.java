@@ -7,7 +7,7 @@ public class NLPagent {
 	private String sentence;	// Sentence that can be queried
 	private ArrayList<Frame> frames;
 	private ArrayList<Word> words;
-	private final String DEFAULTDICT = "Dictionary.txt";
+	private final String DEFAULTDICT = "Dictionary.ser";
 	private Dictionary dictionary;
 	private boolean interactive;	// should the agent respond to user and learn
 

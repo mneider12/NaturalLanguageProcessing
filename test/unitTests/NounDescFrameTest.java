@@ -23,7 +23,7 @@ public class NounDescFrameTest {
 	 */
 	@Test
 	public void addWordTest() {
-		Dictionary dict = new Dictionary("Dictionary.txt");
+		Dictionary dict = new Dictionary("Dictionary.ser");
 		NounDescFrame frame = new NounDescFrame();
 		String sentence = "the big bad grey wolf ate the sweet frail grandmother";
 		ArrayList<NounDescFrame> frames = new ArrayList<NounDescFrame>();

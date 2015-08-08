@@ -2,6 +2,8 @@ package naturalLanguageProcessor;
 
 public class Adjective extends Word {
 	
+
+	private static final long serialVersionUID = 725403016012167252L;
 	private final String ABBREVIATION = "adj.";	// abbreviation for adjectives
 	
 	/*

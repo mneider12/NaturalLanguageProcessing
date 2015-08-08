@@ -29,7 +29,7 @@ public class DictionaryTest {
 	 */
 	@BeforeClass
 	public static void setup() {
-		dict = new Dictionary("Dictionary.txt");
+		dict = new Dictionary("Dictionary.ser");
 	}
 	
 	/*
@@ -39,7 +39,7 @@ public class DictionaryTest {
 	public void loadTest() {
 		assertTrue(dict.hasWord("over"));
 		assertFalse(dict.hasWord("strawberry"));
-		dict.load("TestDictionary.txt");
+		dict.load("TestDictionary.ser");
 		assertFalse(dict.hasWord("over"));
 		assertTrue(dict.hasWord("strawberry"));
 		dict.load("Dictionary.txt");	//cleanup - put the old dictionary back into memory
